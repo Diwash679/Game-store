@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>🎮GameZone - All Games</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header>
+    <h1><a href="index.html">🎮 GameZone Store</a></h1>
+    <nav>
+        <a href="index.html">Home</a>
+        <a href="games.html">All Games</a>
+      
+        <div class="cart-dropdown">
+          <a href="cart.html" id="cart-link">View Cart 🛒 (<span id="cart-count">0</span>)</a>
+          <div class="cart-preview" id="cart-preview">
+            <div id="cart-preview-items"></div>
+            <div id="cart-preview-total"></div>
+            <a href="cart.html" class="checkout-button">Go to Checkout</a>
+          </div>
+        </div>
+      </nav>
+      
+  </header>
+
+  <main>
+    <h2>All Games</h2>
+    <div class="game-list">
+      <div class="game-card">
+        <img src="image/exp-33.jpg" alt="Game 1">
+        <h3>Expidition 33</h3>
+        <p>$69.95</p>
+        <button onclick="addToCart('Expidition 33', 69.95, 'image/exp-33.jpg')">Add to Cart</button>
+      </div>
+
+      <div class="game-card">
+        <img src="image/TESIVOR.jpeg" alt="Game 2">
+        <h3>The Elder Scrolls IV: Oblivion Remastered</h3>
+        <p>$84.95</p>
+        <button onclick="addToCart('The Elder Scrolls IV: Oblivion Remastered', 84.95, 'image/TESIVOR.jpeg')">Add to Cart</button>
+      </div>
+
+      <div class="game-card">
+        <img src="image/Sc1.webp" alt="Game 3">
+        <h3>Schedule I</h3>
+        <p>$24.50</p>
+        <button onclick="addToCart('Schedule I', 29.50, 'image/Sc1.webp')">Add to Cart</button>
+      </div>
+
+      <div class="game-card">
+        <img src="image/ER.jpg" alt="Game 4">
+        <h3>Elden Ring</h3>
+        <p>$89.95</p>
+        <button onclick="addToCart('Elden Ring', 89.95, 'image/ER.jpg')">Add to Cart</button>
+      </div>
+
+      <div class="game-card">
+        <img src="image/MRF.png" alt="Game 5">
+        <h3>Metaphor: ReFantazio</h3>
+        <p>$114.95</p>
+        <button onclick="addToCart('Metaphor: ReFantazio', 114.95, 'image/MRF.png')">Add to Cart</button>
+      </div>
+
+      <div class="game-card">
+        <img src="image/SM2.jpg" alt="Game 6">
+        <h3>Warhammer 40,000: Space Marine 2</h3>
+        <p>$89.95</p>
+        <button onclick="addToCart('Warhammer 40,000: Space Marine 2', 89.95, 'image/SM2.jpg')">Add to Cart</button>
+      </div>
+
+      <div class="game-card">
+        <img src="image/Balatro.jpg" alt="Game 7">
+        <h3>Balatro</h3>
+        <p>$21.95</p>
+        <button onclick="addToCart('Balatro', 21.95, 'image/Balatro.jpg')">Add to Cart</button>
+      </div>
+
+      <div class="game-card">
+        <img src="image/GOWR.jpg" alt="Game 8">
+        <h3>God of War Ragnarök</h3>
+        <p>$94.95</p>
+        <button onclick="addToCart('God of War Ragnarök', 94.95, 'image/GOWR.jpg')">Add to Cart</button>
+      </div>
+
+      <div class="game-card">
+        <img src="image/TFBK.jpg" alt="Game 9">
+        <h3>The First Berserker: Khazan</h3>
+        <p>$84.95</p>
+        <button onclick="addToCart('The First Berserker: Khazan', 84.95, 'image/TFBK.jpg')">Add to Cart</button>
+      </div>
+
+      <div class="game-card">
+        <img src="image/DMC5.jpg" alt="Game 10">
+        <h3>Devil May Cry 5</h3>
+        <p>$63.20</p>
+        <button onclick="addToCart('Devil May Cry 5', 63.20, 'image/DMC5.jpg')">Add to Cart</button>
+      </div>
+
+      <div class="game-card">
+        <img src="image/SSDT.jpg" alt="Game 11">
+        <h3>Sekiro: Shadows Die Twice</h3>
+        <p>$89.95</p>
+        <button onclick="addToCart('Sekiro: Shadows Die Twice', 89.95, 'image/SSDT.jpg')">Add to Cart</button>
+      </div>
+
+      <div class="game-card">
+        <img src="image/DS1.jpg" alt="Game 12">
+        <h3>DARK SOULS: REMASTERED</h3>
+        <p>$56.95</p>
+        <button onclick="addToCart('DARK SOULS: REMASTERED', 56.95, 'image/DS1.jpg')">Add to Cart</button>
+      </div>
+
+      <div class="game-card">
+        <img src="image/DS3.jpg" alt="Game 13">
+        <h3>DARK SOULS III</h3>
+        <p>$84.95</p>
+        <button onclick="addToCart('DARK SOULS III', 84.95, 'image/DS3.jpg')">Add to Cart</button>
+      </div>
+
+      <div class="game-card">
+        <img src="image/MHWI.png" alt="Game 14">
+        <h3>Monster Hunter: Wlds</h3>
+        <p>$104.95</p>
+        <button onclick="addToCart('Monster Hunter: Wlds', 104.95, 'image/MHWI.png')">Add to Cart</button>
+      </div>
+
+      <div class="game-card">
+        <img src="image/MHWO.jpg" alt="Game 15">
+        <h3>Monster Hunter: World</h3>
+        <p>$44.95</p>
+        <button onclick="addToCart('Monster Hunter: World', 44.95, 'image/MHWO.jpg')">Add to Cart</button>
+      </div>
+
+      <div class="game-card">
+        <img src="image/P3R.jpg" alt="Game 16">
+        <h3>Persona 3 Reload</h3>
+        <p>$107.95</p>
+        <button onclick="addToCart('Persona 3 Reload', 107.95, 'image/P3R.jpg')">Add to Cart</button>
+      </div>
+
+      <div class="game-card">
+        <img src="image/P5R.jpg" alt="Game 17">
+        <h3>Persona 5 Royal</h3>
+        <p>$24.99</p>
+        <button onclick="addToCart('Persona 5 Royal', 24.99, 'image/P5R.jpg')">Add to Cart</button>
+      </div>
+
+      <div class="game-card">
+        <img src="image/BMW.jpg" alt="Game 18">
+        <h3>Black Myth: Wukong</h3>
+        <p>$89.95</p>
+        <button onclick="addToCart('Black Myth: Wukong', 89.95, 'image/BMW.jpg')">Add to Cart</button>
+      </div>
+
+      <div class="game-card">
+        <img src="image/GOT.jpg" alt="Game 19">
+        <h3>Ghost of Tsushima</h3>
+        <p>$94.95</p>
+        <button onclick="addToCart('Ghost of Tsushima', 94.95, 'image/GOT.jpg')">Add to Cart</button>
+      </div>
+
+      
+      <div class="game-card">
+        <img src="image/RDR2.jpg" alt="Game 20">
+        <h3>Red Dead Redemption 2</h3>
+        <p>$89.95</p>
+        <button onclick="addToCart('Red Dead Redemption 2', 89.95, 'image/RDR2.jpg')">Add to Cart</button>
+      </div>
+    </div>
+    
+  </main>
+  
+  <footer>
+    <div class="footer-content">
+      <p>&copy; 2025 YourGameStore. All rights reserved.</p>
+      <nav class="footer-nav">
+        <a href="about.html">About</a>
+        <a href="contact.html">Contact</a>
+      </nav>
+    </div>
+  </footer>
+  
+
+  <script src="script.js"></script>
+</body>
+</html>

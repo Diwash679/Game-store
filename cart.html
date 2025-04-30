@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>🎮GameZone - Cart</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header>
+    <h1><a href="index.html">🎮 GameZone Store</a></h1>
+    <nav>
+        <a href="index.html">Home</a>
+        <a href="games.html">All Games</a>
+      
+        <div class="cart-dropdown">
+          <a href="cart.html" id="cart-link">View Cart 🛒 (<span id="cart-count">0</span>)</a>
+          <div class="cart-preview" id="cart-preview">
+            <div id="cart-preview-items"></div>
+            <div id="cart-preview-total"></div>
+            <a href="cart.html" class="checkout-button">Go to Checkout</a>
+          </div>
+        </div>
+      </nav>
+      
+  </header>
+
+  <main>
+    <h2>Your Cart</h2>
+    <div id="cart-items"></div>
+
+    <h3>Total: $<span id="total">0.00</span></h3>
+
+    <button onclick="checkout()">Proceed to Checkout</button>
+  </main>
+
+  <footer>
+    <div class="footer-content">
+      <p>&copy; 2025 YourGameStore. All rights reserved.</p>
+      <nav class="footer-nav">
+        <a href="about.html">About</a>
+        <a href="contact.html">Contact</a>
+      </nav>
+    </div>
+  </footer>
+  
+  <script src="script.js"></script>
+</body>
+</html>

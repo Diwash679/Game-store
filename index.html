@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>🎮GameZone - Home</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header>
+    <h1><a href="index.html">🎮 GameZone Store</a></h1>
+    <nav>
+        <a href="index.html">Home</a>
+        <a href="games.html">All Games</a>
+      
+        <div class="cart-dropdown">
+          <a href="cart.html" id="cart-link">View Cart 🛒 (<span id="cart-count">0</span>)</a>
+          <div class="cart-preview" id="cart-preview">
+            <div id="cart-preview-items"></div>
+            <div id="cart-preview-total"></div>
+            <a href="cart.html" class="checkout-button">Go to Checkout</a>
+          </div>
+        </div>
+        
+      </nav>
+      
+  </header>
+
+  <main>
+    <h2>New and Trending</h2>
+    <div class="game-list">
+      <div class="game-card">
+        <img src="image/exp-33.jpg" alt="Game 1">
+        <h3>Expidition 33</h3>
+        <p>$69.95</p>
+        <button onclick="addToCart('Expidition 33', 69.95, 'image/exp-33.jpg')">Add to Cart</button>
+      </div>
+
+      <div class="game-card">
+        <img src="image/TESIVOR.jpeg" alt="Game 2">
+        <h3>The Elder Scrolls IV: Oblivion Remastered</h3>
+        <p>$84.95</p>
+        <button onclick="addToCart('The Elder Scrolls IV: Oblivion Remastered', 84.95, 'image/TESIVOR.jpeg')">Add to Cart</button>
+      </div>
+      <div class="game-card">
+        <img src="image/Sc1.webp" alt="Game 3">
+        <h3>Schedule I</h3>
+        <p>$24.50</p>
+        <button onclick="addToCart('Schedule I', 29.50, 'image/Sc1.webp')">Add to Cart</button>
+      </div>
+    </div>
+  </main>
+
+  <footer>
+    <div class="footer-content">
+      <p>&copy; 2025 YourGameStore. All rights reserved.</p>
+      <nav class="footer-nav">
+        <a href="about.html">About</a>
+        <a href="contact.html">Contact</a>
+      </nav>
+    </div>
+  </footer>
+  
+
+  <script src="script.js"></script>
+</body>
+</html>
