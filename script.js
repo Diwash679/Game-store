@@ -2,15 +2,30 @@ let cart = JSON.parse(localStorage.getItem('cart')) || [];
 
 function addToCart(name, price, image) {
   const cart = JSON.parse(localStorage.getItem('cart')) || [];
+  
+  const existingItem = cart.find(item => item.name === name);
+  
+  if (existingItem) {
+  
+    const warningElement = document.getElementById(`warning-${name.replace(/\s+/g, '-')}`);
+    if (warningElement) {
+      warningElement.textContent = '⚠️ Already in cart!';
+      setTimeout(() => warningElement.textContent = '', 2000); 
+    }
+    return; 
+  }
+
   cart.push({ name, price, image });
   localStorage.setItem('cart', JSON.stringify(cart));
   updateCartCount();
   loadCartPreview();
+
+  const confirmationElement = document.getElementById(`warning-${name.replace(/\s+/g, '-')}`);
+  if (confirmationElement) {
+    confirmationElement.textContent = '✅ Added to cart!';
+    setTimeout(() => confirmationElement.textContent = '', 2000);
+  }
 }
-
-
-
-  
 
 function updateCartCount() {
   const cart = JSON.parse(localStorage.getItem('cart')) || [];
@@ -26,19 +41,19 @@ function loadCart() {
   const totalElement = document.getElementById('total');
 
   let total = 0;
-  
-  cartContainer.innerHTML = '';  // clear current cart display
-  cartItems.forEach(item => {
+  cartContainer.innerHTML = '';
+
+  cartItems.forEach((item, index) => {
     total += item.price;
 
     const itemElement = document.createElement('div');
     itemElement.className = 'cart-item';
     itemElement.innerHTML = `
-      <img src="${item.image}" alt="${item.name}" class="cart-item-image">  <!-- Image shown here -->
+      <img src="${item.image}" alt="${item.name}" class="cart-item-image">
       <div class="cart-item-details">
-        <p><strong>${item.name}</strong></p>
+        <h4>${item.name}</h4>
         <p>$${item.price.toFixed(2)}</p>
-        <button onclick="removeFromCart(${cartItems.indexOf(item)})">Remove</button>  <!-- Add remove button -->
+        <button onclick="removeFromCart(${index})">Remove</button>
       </div>
     `;
     cartContainer.appendChild(itemElement);
@@ -52,10 +67,10 @@ function loadCartPreview() {
   const previewContainer = document.getElementById('cart-preview-items');
   const totalElement = document.getElementById('cart-preview-total');
 
-  previewContainer.innerHTML = ''; // clear previous preview items
+  previewContainer.innerHTML = '';
 
   let total = 0;
-  cartItems.slice(0, 5).forEach(item => {  // Show only the first 5 items for preview
+  cartItems.slice(0, 5).forEach(item => {
     total += item.price;
     const previewItem = document.createElement('div');
     previewItem.className = 'cart-preview-item';
