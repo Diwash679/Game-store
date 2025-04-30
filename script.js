@@ -1,30 +1,50 @@
+console.log("Full cart contents:", JSON.parse(localStorage.getItem('cart')));
+document.addEventListener('DOMContentLoaded', function() {
+    console.log("DOM fully loaded");
+    if (document.getElementById('cart-items')) {
+        console.log("Cart container found");
+    }
+});
+
+
+
+
+
 let cart = JSON.parse(localStorage.getItem('cart')) || [];
 
 function addToCart(name, price, image) {
-  const cart = JSON.parse(localStorage.getItem('cart')) || [];
+  let cart = JSON.parse(localStorage.getItem('cart')) || [];
   
-  const existingItem = cart.find(item => item.name === name);
+  const existingItemIndex = cart.findIndex(item => item.name === name);
   
-  if (existingItem) {
-  
+  if (existingItemIndex !== -1) {
+
     const warningElement = document.getElementById(`warning-${name.replace(/\s+/g, '-')}`);
     if (warningElement) {
       warningElement.textContent = '⚠️ Already in cart!';
-      setTimeout(() => warningElement.textContent = '', 2000); 
+      setTimeout(() => warningElement.textContent = '', 2000);
     }
-    return; 
+    return;
   }
 
-  cart.push({ name, price, image });
+  cart.push({ 
+    name: name, 
+    price: price, 
+    image: image 
+  });
+
   localStorage.setItem('cart', JSON.stringify(cart));
+  
   updateCartCount();
   loadCartPreview();
-
+  
   const confirmationElement = document.getElementById(`warning-${name.replace(/\s+/g, '-')}`);
   if (confirmationElement) {
     confirmationElement.textContent = '✅ Added to cart!';
     setTimeout(() => confirmationElement.textContent = '', 2000);
   }
+  
+  console.log("Cart after adding:", cart); // Debug line
 }
 
 function updateCartCount() {
@@ -38,28 +58,39 @@ function updateCartCount() {
 function loadCart() {
   const cartItems = JSON.parse(localStorage.getItem('cart')) || [];
   const cartContainer = document.getElementById('cart-items');
-  const totalElement = document.getElementById('total');
-
-  let total = 0;
+  
+  console.log("Attempting to load cart items:", cartItems); // Debug line
+  
+  // Clear previous items
   cartContainer.innerHTML = '';
-
+  
+  // If cart is empty
+  if (cartItems.length === 0) {
+      cartContainer.innerHTML = '<p>Your cart is empty.</p>';
+      document.getElementById('total').textContent = '0.00';
+      return;
+  }
+  
+  // Display each item
+  let total = 0;
   cartItems.forEach((item, index) => {
-    total += item.price;
-
-    const itemElement = document.createElement('div');
-    itemElement.className = 'cart-item';
-    itemElement.innerHTML = `
-      <img src="${item.image}" alt="${item.name}" class="cart-item-image">
-      <div class="cart-item-details">
-        <h4>${item.name}</h4>
-        <p>$${item.price.toFixed(2)}</p>
-        <button onclick="removeFromCart(${index})">Remove</button>
-      </div>
-    `;
-    cartContainer.appendChild(itemElement);
+      total += item.price;
+      
+      const itemElement = document.createElement('div');
+      itemElement.className = 'cart-item';
+      itemElement.innerHTML = `
+          <img src="${item.image}" alt="${item.name}" class="cart-item-image">
+          <div class="cart-item-details">
+              <h4>${item.name}</h4>
+              <p>$${item.price.toFixed(2)}</p>
+              <button onclick="removeFromCart(${index})">Remove</button>
+          </div>
+      `;
+      cartContainer.appendChild(itemElement);
   });
-
-  totalElement.textContent = total.toFixed(2);
+  
+  // Update total
+  document.getElementById('total').textContent = total.toFixed(2);
 }
 
 function loadCartPreview() {
@@ -85,7 +116,13 @@ function loadCartPreview() {
   totalElement.textContent = `$${total.toFixed(2)}`;
 }
 
-
+// Initialize when page loads
+document.addEventListener('DOMContentLoaded', function() {
+  updateCartCount();
+  if (window.location.pathname.includes('cart.html')) {
+      loadCart();
+  }
+});
 
 
 function removeFromCart(index) {
@@ -95,18 +132,41 @@ function removeFromCart(index) {
   updateCartCount();
 }
 
-function checkout() {
-  alert('Thank you for your purchase! (Simulated Checkout)');
-  cart = [];
-  localStorage.setItem('cart', JSON.stringify(cart));
-  loadCart();
-  updateCartCount();
-}
-
-document.addEventListener('DOMContentLoaded', () => {
-  updateCartCount();
-  if (document.getElementById('cart-items')) {
-    loadCart();
+// Handle form submission
+document.getElementById('checkout-form').addEventListener('submit', function(e) {
+  e.preventDefault();
+  
+  // Validate cart isn't empty
+  const cartItems = JSON.parse(localStorage.getItem('cart')) || [];
+  if (cartItems.length === 0) {
+    alert('Your cart is empty!');
+    return;
   }
+
+  const formData = {
+    customer: {
+      firstname: document.getElementById('firstname').value,
+      lastname: document.getElementById('lastname').value,
+      email: document.getElementById('email').value,
+      phone: document.getElementById('phone').value,
+      address: document.getElementById('address').value
+    },
+    payment: {
+      cardname: document.getElementById('cardname').value,
+      cardnumber: document.getElementById('cardnumber').value,
+      expiry: document.getElementById('expiry').value,
+      cvv: document.getElementById('cvv').value
+    },
+    cart: cartItems,
+    total: parseFloat(document.getElementById('total').textContent)
+  };
+
+  console.log('Order submitted:', formData);
+  
+  alert(`Order confirmed! Thank you, ${formData.customer.firstname}.`);
+  
+  localStorage.setItem('cart', JSON.stringify([]));
+  updateCartCount();
+  loadCart();
 });
 

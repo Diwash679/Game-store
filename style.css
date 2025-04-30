@@ -243,6 +243,29 @@ body {
   margin-top: 20px;
 }
 
+.checkout-form {
+  max-width: 600px;
+  margin: 20px auto;
+  padding: 20px;
+  background: #f9f9f9;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.checkout-form .form-row {
+  display: flex;
+  gap: 15px;
+}
+
+.checkout-form .form-group {
+  margin-bottom: 15px;
+}
+
+.checkout-form .checkout-button {
+  background: #28a745;
+  width: 100%;
+}
+
 
   footer {
     background-color: #222;
